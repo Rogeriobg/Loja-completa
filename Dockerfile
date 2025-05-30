@@ -1,20 +1,16 @@
 # Etapa de build
-FROM maven:3.9.2-eclipse-temurin-17-slim AS build
+FROM maven:3.9.6-eclipse-temurin-24 AS build
 
 WORKDIR /app
 
-# Copia o pom.xml e baixa dependências
 COPY pom.xml .
 RUN mvn dependency:go-offline -B
 
-# Copia o restante da aplicação
 COPY . .
-
-# Compila o projeto sem rodar testes
 RUN mvn clean package -DskipTests
 
-# Etapa de runtime com imagem estável
-FROM eclipse-temurin:17-jdk AS runtime
+# Etapa de runtime
+FROM eclipse-temurin:24-jdk
 
 WORKDIR /app
 
