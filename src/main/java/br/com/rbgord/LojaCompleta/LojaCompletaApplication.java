@@ -8,6 +8,6 @@ public class LojaCompletaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LojaCompletaApplication.class, args);
+		System.out.println("🚀 Aplicação LojaCompleta iniciada com sucesso!");
 	}
-
 }
