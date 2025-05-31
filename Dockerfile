@@ -1,5 +1,4 @@
-# Etapa de build
-FROM maven:3.9.8-eclipse-temurin-25 AS build
+FROM --platform=linux/amd64 maven:3.9.8-eclipse-temurin-24 AS build
 
 WORKDIR /app
 
@@ -9,8 +8,7 @@ RUN mvn dependency:go-offline -B
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Etapa de runtime
-FROM openjdk:25-jdk-slim
+FROM --platform=linux/amd64 openjdk:25-jdk-slim
 
 WORKDIR /app
 
