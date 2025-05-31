@@ -1,5 +1,5 @@
 # Etapa de build
-FROM maven:3.9.8-eclipse-temurin-24 AS build
+FROM maven:3.9.8-eclipse-temurin-25 AS build
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Etapa de runtime
-FROM eclipse-temurin:24-jdk
+FROM openjdk:25-jdk-slim
 
 WORKDIR /app
 
